@@ -50,6 +50,7 @@ public class ShapeContainer extends JPanel implements Pointable {
     public void pointerDown(Point point) {
         if (mode == Mode.INSERT) {
             shapes.add(new Circle(point, Math.random() * 50.0));
+            //shapes.add(new Rectangle(point, Math.random() * 100, Math.random() * 100));
             repaint(); // uppmanar swing att måla om
         } else if (mode == Mode.MOVE)
             select(point);
@@ -62,7 +63,8 @@ public class ShapeContainer extends JPanel implements Pointable {
         } else if (mode == Mode.MARK) {
             select(point);
             if (selected != null) {
-                Shape markedShape = new ShapeDecorator(selected);
+                //Shape markedShape = new ShapeDecorator(selected);
+                Shape markedShape = new CrossDecorator(selected);
                 shapes.remove(selected);
                 shapes.add(markedShape);
                 repaint();
