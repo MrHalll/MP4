@@ -1,3 +1,5 @@
+package App;
+
 import java.awt.Graphics;
 
 public interface Shape

@@ -1,3 +1,5 @@
+package App;
+
 import java.awt.*;
 
 public class CrossDecorator implements Shape{

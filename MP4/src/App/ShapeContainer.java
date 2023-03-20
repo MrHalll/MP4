@@ -1,3 +1,8 @@
+package App;
+
+import App.State.InsertState;
+import App.State.State;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.LinkedList;
@@ -13,6 +18,7 @@ public class ShapeContainer extends JPanel implements Pointable {
         INSERT, MOVE, DELETE, MARK, UNMARK, RESIZE
     };
 
+    private State state = new InsertState(this);
     private Mode mode = Mode.INSERT;
     private Shape selected;
 
@@ -38,7 +44,7 @@ public class ShapeContainer extends JPanel implements Pointable {
 
     }
 
-    private void select(Point point) {
+    public void select(Point point) {
         for (Shape shape : shapes) {
             if (shape.intersects(point)) {
                 selected = shape;
@@ -48,9 +54,11 @@ public class ShapeContainer extends JPanel implements Pointable {
     }
 
     public void pointerDown(Point point) {
+        state.pointerDown(point);
+        /*
         if (mode == Mode.INSERT) {
-            //shapes.add(new Circle(point, Math.random() * 50.0));
-            shapes.add(new Rectangle(point, Math.random() * 100, Math.random() * 100));
+            shapes.add(new Circle(point, Math.random() * 50.0));
+            //shapes.add(new App.Rectangle(point, Math.random() * 100, Math.random() * 100));
             repaint(); // uppmanar swing att måla om
         } else if (mode == Mode.MOVE)
             select(point);
@@ -63,7 +71,7 @@ public class ShapeContainer extends JPanel implements Pointable {
         } else if (mode == Mode.MARK) {
             select(point);
             if (selected != null) {
-                //Shape markedShape = new ShapeDecorator(selected);
+                //App.Shape markedShape = new App.ShapeDecorator(selected);
                 Shape markedShape = new CrossDecorator(selected);
                 shapes.remove(selected);
                 shapes.add(markedShape);
@@ -79,15 +87,18 @@ public class ShapeContainer extends JPanel implements Pointable {
             }
         } else if (mode == Mode.RESIZE) {
             select(point);
-        }
+        }*/
     }
 
     public void pointerUp(Point point) {
-        selected = null;
+        state.pointerUp(point);
+        //selected = null;
     }
 
     public void pointerMoved(Point point, boolean pointerDown) {
-        if (selected != null && pointerDown) {
+        state.pointerMoved(point,selected,pointerDown);
+        /*
+       if (selected != null && pointerDown) {
             if (mode == Mode.MOVE) {
                 selected.moveTo(point);
                 repaint(); // uppmanar swing att måla om
@@ -95,10 +106,22 @@ public class ShapeContainer extends JPanel implements Pointable {
                 selected.resizeTo(point);
                 repaint();
             }
-        }
+        }*/
     }
 
-    public void setMode(Mode mode) {
+    public void setMode(Mode mode, State state) {
         this.mode = mode;
+        this.state = state;
+    }
+
+    public List<Shape> getList(){
+        return shapes;
+    }
+
+    public void setSelected(Shape setSelected){
+        selected = setSelected;
+    }
+    public Shape getSelected(){
+        return selected;
     }
 }
