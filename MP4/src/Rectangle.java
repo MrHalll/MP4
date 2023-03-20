@@ -18,7 +18,9 @@ public class Rectangle implements Shape{
     }
     @Override
     public void draw(Graphics g) {
-        g.drawRect((int) center.getX(), (int) center.getY(), (int) width, (int) height);
+        int startingPointX = (int) (center.getX() - (width / 2.0));
+        int startingPointY = (int) (center.getY() - (height / 2.0));
+        g.drawRect(startingPointX, startingPointY, (int) width, (int) height);
     }
 
     @Override
