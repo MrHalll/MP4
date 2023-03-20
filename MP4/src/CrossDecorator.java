@@ -20,41 +20,41 @@ public class CrossDecorator implements Shape{
 
     @Override
     public Point getPosition() {
-        return null;
+        return decoratee.getPosition();
     }
 
     @Override
     public double getWidth() {
-        return 0;
+        return decoratee.getWidth();
     }
 
     @Override
     public double getHeight() {
-        return 0;
+        return decoratee.getHeight();
     }
 
     @Override
     public boolean intersects(Point point) {
-        return false;
+        return decoratee.intersects(point);
     }
 
     @Override
     public void moveTo(Point point) {
-
+        decoratee.moveTo(point);
     }
 
     @Override
     public void move(double dx, double dy) {
-
+        decoratee.move(dx, dy);
     }
 
     @Override
     public void resizeTo(Point point) {
-
+        decoratee.resizeTo(point);
     }
 
     @Override
     public Shape peel() {
-        return null;
+        return decoratee;
     }
 }
