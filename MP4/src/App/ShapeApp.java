@@ -25,12 +25,12 @@ public class ShapeApp extends JFrame
   public void createMenue()
     {
     JMenu menu = new JMenu("Modes");
-    createMenuItem(menu, "Insert", e -> shapeContainer.setMode(ShapeContainer.Mode.INSERT, new InsertState(shapeContainer)));
-    createMenuItem(menu, "Move", e -> shapeContainer.setMode(ShapeContainer.Mode.MOVE, new MoveState(shapeContainer)));
-    createMenuItem(menu, "Delete", e -> shapeContainer.setMode(ShapeContainer.Mode.DELETE, new DeleteState(shapeContainer)));
-    createMenuItem(menu, "Mark", e -> shapeContainer.setMode(ShapeContainer.Mode.MARK, new MarkState(shapeContainer)));
-    createMenuItem(menu, "Unmark", e -> shapeContainer.setMode(ShapeContainer.Mode.UNMARK, new UnmarkState(shapeContainer)));
-    createMenuItem(menu, "Resize", e -> shapeContainer.setMode(ShapeContainer.Mode.RESIZE, new ResizeState(shapeContainer)));
+    createMenuItem(menu, "Insert", e -> shapeContainer.setState(new InsertState(shapeContainer)));
+    createMenuItem(menu, "Move", e -> shapeContainer.setState(new MoveState(shapeContainer)));
+    createMenuItem(menu, "Delete", e -> shapeContainer.setState(new DeleteState(shapeContainer)));
+    createMenuItem(menu, "Mark", e -> shapeContainer.setState(new MarkState(shapeContainer)));
+    createMenuItem(menu, "Unmark", e -> shapeContainer.setState(new UnmarkState(shapeContainer)));
+    createMenuItem(menu, "Resize", e -> shapeContainer.setState(new ResizeState(shapeContainer)));
     JMenuBar menuBar = new JMenuBar();
     menuBar.add(menu);
     this.setJMenuBar(menuBar);
